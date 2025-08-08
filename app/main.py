@@ -3,6 +3,15 @@ from .schemas import WeatherParams, AnalyzeTextParams, DiagnosticsParams
 from fastapi.responses import FileResponse
 import json
 import os
+import sys
+import logging
+
+logging.basicConfig(
+    format="%(name)s[%(lineno)d] - %(message)s",
+    stream=sys.stdout,
+    level=logging.INFO,
+)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Demo MCP Tool Server")
 
