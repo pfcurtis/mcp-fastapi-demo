@@ -23,7 +23,7 @@ spec:
       containers:
         - name: simple-mcp-server
           imagePullPolicy: Always
-          image: pfcurtis/simple-web-server:0.1.0
+          image: pfcurtis/mcp-server-demo:0.1.2
 
           ports:
           - containerPort: 8000
