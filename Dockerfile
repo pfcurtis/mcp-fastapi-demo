@@ -9,4 +9,4 @@ ADD app /app
 ADD uvicorn.sh /
 
 # Run with uvicorn
-CMD ['/uvicorn.sh']
+ENTRYPOINT ["/uvicorn.sh"]
