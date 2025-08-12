@@ -5,8 +5,7 @@ ADD requirements.txt /
 RUN pip install -r requirements.txt --no-cache-dir
 
 # Copy the project into the image
-ADD app /app
-ADD uvicorn.sh /
+ADD demo_server.py /
 
 # Run with uvicorn
-ENTRYPOINT ["/uvicorn.sh"]
+ENTRYPOINT ["python","demo_server.py"]

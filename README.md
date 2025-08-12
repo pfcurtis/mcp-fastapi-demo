@@ -2,12 +2,11 @@
 
 This repo contains a **Model Context Protocol (MCP)** demo with:
 
-* a minimal **MCP server** exposing **three dummy tools**
-
-  * `get_weather(city="Seattle", units="metric")`
-  * `analyze_text(text: str)`
-  * `run_diagnostics(level="quick")`
-* a minimal **command-line client** that connects over **SSE** and calls any tool.
+- a minimal **MCP server** exposing **three dummy tools**  
+  - `get_weather(city="Seattle", units="metric")`  
+  - `analyze_text(text: str)`  
+  - `run_diagnostics(level="quick")`
+- a minimal **command-line client** that connects over **SSE** and calls any tool.
 
 It’s built on the **official MCP Python SDK** and uses the **SSE transport** for maximum compatibility with other MCP clients.
 
@@ -15,8 +14,8 @@ It’s built on the **official MCP Python SDK** and uses the **SSE transport** f
 
 ## Prerequisites
 
-* Python 3.9+
-* (Recommended) A virtual environment
+- Python 3.9+
+- (Recommended) A virtual environment
 
 ```bash
 python -m venv env
@@ -35,8 +34,8 @@ pip install "mcp[cli]" uvicorn
 
 ## Files
 
-* `demo_server.py` — SSE MCP server exposing the 3 tools
-* `demo_client.py` — CLI client that connects to the server over SSE and calls a tool
+- `demo_server.py` — SSE MCP server exposing the 3 tools
+- `demo_client.py` — CLI client that connects to the server over SSE and calls a tool
 
 ---
 
@@ -48,8 +47,8 @@ python demo_server.py
 
 By default this hosts an SSE MCP endpoint at:
 
-* **SSE stream:** `http://127.0.0.1:8000/sse`
-* **Message POST channel:** `http://127.0.0.1:8000/messages`
+- **SSE stream:** `http://127.0.0.1:8000/sse`  
+- **Message POST channel:** `http://127.0.0.1:8000/messages`
 
 (These are provided by the SDK’s `mcp.sse_app()` helper and served by Uvicorn.)
 
@@ -69,7 +68,6 @@ python demo_client.py \
 ```
 
 **Expected output (example):**
-
 ```
 Available tools: ['get_weather', 'analyze_text', 'run_diagnostics']
 
@@ -168,22 +166,18 @@ if __name__ == "__main__":
 
 ## Troubleshooting
 
-* **Client can’t connect / times out**
+- **Client can’t connect / times out**
+  - Ensure the server is running and listening on `http://127.0.0.1:8000`.
+  - Confirm you’re using the SSE URL: `--url http://127.0.0.1:8000/sse`.
 
-  * Ensure the server is running and listening on `http://127.0.0.1:8000`.
-  * Confirm you’re using the SSE URL: `--url http://127.0.0.1:8000/sse`.
+- **Tool not found**
+  - The client prints `Available tools: [...]`. Use one of those names exactly.
 
-* **Tool not found**
+- **Different port/host**
+  - Start the server with a different port/host by editing `uvicorn.run(...)` in `demo_server.py`, then update the client `--url`.
 
-  * The client prints `Available tools: [...]`. Use one of those names exactly.
-
-* **Different port/host**
-
-  * Start the server with a different port/host by editing `uvicorn.run(...)` in `demo_server.py`, then update the client `--url`.
-
-* **Virtual environment issues**
-
-  * Make sure both server and client are using the same venv (`which python` / `where python`).
+- **Virtual environment issues**
+  - Make sure both server and client are using the same venv (`which python` / `where python`).
 
 ---
 
@@ -196,4 +190,3 @@ SSE is widely supported across MCP clients and is easy to host behind common HTT
 ## License
 
 MIT (or your choice—update as needed).
-
